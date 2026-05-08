@@ -33,7 +33,7 @@ Transformer mimarisinin gücünü kullanan DeiT, **%88.79** genel doğruluk oran
 * Özellikle **Monkeypox sınıfında %100 Precision (Kesinlik)** elde ederek bu hastalık tespitinde hiç yanlış pozitif (False Positive) vermemiştir.
 * Model 18. epoch'ta en iyi değerlerine (best weights) ulaşmıştır.
 
-### 2. RelayInceptionV3
+### 2. InceptionV3
 InceptionV3 modelinin özellik çıkarma kapasitesi, bizim yazdığımız özel "Erken Durdurma (Early Stopping)" ve ceza puanlı sınıf ağırlıklarıyla harmanlanmıştır.
 * **%82.89** doğruluk oranı ve **0.7964 F1-Macro** skoru ile dengeli ve istikrarlı bir öğrenme sergilemiştir. En iyi sonuçlar 7. epoch civarında görülmüştür.
 
