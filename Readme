@@ -1,1 +1,50 @@
-I will add
+# Monkeypox Skin Image Detection (MSIDetection) Benchmark
+
+Bu depo (repository), cilt lezyonu görüntülerinden **Monkeypox (Maymun Çiçeği), Chickenpox (Su Çiçeği), Measles (Kızamık) ve Normal** cilt sınıflarını tespit etmek için geliştirilen Derin Öğrenme (Deep Learning) modellerinin kodlarını ve performans analizlerini içermektedir.
+
+## 🚀 Proje Hakkında
+Bu projede, veri setindeki sınıflar arası dengesizlik (imbalance) dikkate alınarak her sınıfın ağırlığına göre özel olarak eğitilmiş 3 farklı model mimarisi karşılaştırılmıştır. 
+
+*(Not: ViT - Vision Transformer mimarisi test aşamasında olup koda henüz dahil edilmemiştir.)*
+
+## 🧠 Kullanılan Modeller
+1. **DeiT (Data-efficient Image Transformers):** Transformer tabanlı modern bir görüntü sınıflandırma modeli.
+2. **RelayInceptionV3:** Özel transfer öğrenme ve ağırlıklandırma yöntemiyle eğitilmiş, InceptionV3 mimarisine dayanan gelişmiş CNN modeli.
+3. **EfficientNetB0:** Parametre verimliliğiyle bilinen, daha az kaynak tüketerek yüksek performans hedefleyen Evrişimli Sinir Ağı.
+
+---
+
+## 📊 Performans Karşılaştırması (Benchmark)
+
+Modeller test/validasyon seti üzerinde değerlendirilmiş ve özellikle dengesiz veri setlerinde asıl başarı ölçütü olan **Macro Ortalamalar** baz alınmıştır.
+
+| Model | Accuracy (Doğruluk) | Precision (Macro) | Recall (Macro) | F1-Score (Macro) |
+| :--- | :---: | :---: | :---: | :---: |
+| 🏆 **DeiT** | **%88.79** | **0.8528** | **0.8803** | **0.8624** |
+| 🥈 **RelayInceptionV3** | %82.89 | 0.7947 | 0.8002 | 0.7964 |
+| 🥉 **EfficientNetB0** | %81.90 | 0.7600 | 0.8000 | 0.7700 |
+
+---
+
+## 🔍 Model Detayları ve Çıkarımlar
+
+### 1. DeiT (En İyi Model)
+Transformer mimarisinin gücünü kullanan DeiT, **%88.79** genel doğruluk oranı ile birinci sırada yer almıştır. 
+* Özellikle **Monkeypox sınıfında %100 Precision (Kesinlik)** elde ederek bu hastalık tespitinde hiç yanlış pozitif (False Positive) vermemiştir.
+* Model 18. epoch'ta en iyi değerlerine (best weights) ulaşmıştır.
+
+### 2. RelayInceptionV3
+InceptionV3 modelinin özellik çıkarma kapasitesi, bizim yazdığımız özel "Erken Durdurma (Early Stopping)" ve ceza puanlı sınıf ağırlıklarıyla harmanlanmıştır.
+* **%82.89** doğruluk oranı ve **0.7964 F1-Macro** skoru ile dengeli ve istikrarlı bir öğrenme sergilemiştir. En iyi sonuçlar 7. epoch civarında görülmüştür.
+
+### 3. EfficientNetB0
+Eğitimi hızlı ve donanım dostu olmasına rağmen, su çiçeği ve kızamık gibi birbirine benzeyen lezyonlarda ayrım yaparken biraz zorlanmıştır. **%81.90 Accuracy** ile tatmin edici ancak diğerlerinin gerisinde bir performans sergilemiştir.
+
+---
+
+## 💻 Kurulum ve Çalıştırma
+Projeyi kendi ortamınızda test etmek için:
+1. Depoyu klonlayın veya indirin.
+2. `.ipynb` uzantılı model dosyalarını **Google Colab** (önerilen donanım: T4 GPU) veya yerel Jupyter ortamınıza yükleyin.
+3. İlk hücrelerdeki kütüphaneleri kurup, veri seti yollarını kendi bilgisayarınıza göre düzenleyerek hücreleri sırayla çalıştırın.
+
